@@ -24,9 +24,19 @@ public class Workflow {
     private boolean repeatWorkflow;
     private long timeBetweenRepeat;
     private boolean varyRepeatFrequency;
+    private long maxRecords;
     private String stepRunMode;
+
     
-    public Workflow() {
+    public long getMaxRecords() {
+		return maxRecords;
+	}
+
+	public void setMaxRecords(long maxRecords) {
+		this.maxRecords = maxRecords;
+	}
+
+	public Workflow() {
         steps = new ArrayList<>();
     }
 

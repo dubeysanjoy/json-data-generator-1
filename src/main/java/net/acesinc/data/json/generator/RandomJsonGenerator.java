@@ -5,7 +5,6 @@
  */
 package net.acesinc.data.json.generator;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
@@ -13,15 +12,20 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonGeneratorFactory;
-import net.acesinc.data.json.generator.types.TypeHandler;
-import net.acesinc.data.json.generator.types.TypeHandlerFactory;
-import net.acesinc.data.json.util.JsonUtils;
+
 import org.apache.commons.math3.random.RandomDataGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import net.acesinc.data.json.generator.types.TypeHandler;
+import net.acesinc.data.json.generator.types.TypeHandlerFactory;
+import net.acesinc.data.json.util.JsonUtils;
 
 /**
  *
@@ -50,6 +54,9 @@ public class RandomJsonGenerator {
         processProperties(gen, config, "");
 
         gen.flush();
+        
+        log.debug(w.toString());
+        
         return w.toString();
     }
 
@@ -71,11 +78,10 @@ public class RandomJsonGenerator {
     }
 
     private javax.json.stream.JsonGenerator processProperties(javax.json.stream.JsonGenerator gen, Map<String, Object> props, String currentContext) {
-//        Map<String, Object> outputValues = new LinkedHashMap<>();
+    	
         for (String propName : props.keySet()) {
             Object value = props.get(propName);
             if (value == null) {
-//                outputValues.put(propName, null);
                 generatedValues.put(currentContext + propName, null);
                 addValue(gen, propName, null);
             } else if (String.class.isAssignableFrom(value.getClass())) {
@@ -96,16 +102,17 @@ public class RandomJsonGenerator {
                     }
                 } else {
                     try {
-                        TypeHandler th = TypeHandlerFactory.getInstance().getTypeHandler(type, generatedValues, currentContext);
+                        TypeHandler th = TypeHandlerFactory.getInstance().getTypeHandler(type, generatedValues, currentContext, propName);
 
+                        
                         if (th != null) {
                             Object val = th.getNextRandomValue();
-//                            outputValues.put(propName, val);
+                            
+                            log.debug("current context:" + currentContext  + " propName: " +  propName + " val:" + val);
+                            
                             generatedValues.put(currentContext + propName, val);
                             addValue(gen, propName, val);
                         } else {
-//                            log.debug("Unknown Type: [ " + type + " ] for prop [ " + propName + " ]. Attempting to echo literal value.");
-//                            outputValues.put(propName, type);
                             generatedValues.put(currentContext + propName, type);
                             addValue(gen, propName, type);
                         }

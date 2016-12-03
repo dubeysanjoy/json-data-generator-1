@@ -5,5 +5,12 @@
         }],
     "producers": [{
         "type":"logger"
+    },
+    {
+    	"type":"file",
+    	"output.directory": "C:/spring-workspace/json-data-generator/data",
+	"file.prefix": "med_data_",
+    	"file.extension":".json",
+        "file.maxRecords":"10"
     }]
 }

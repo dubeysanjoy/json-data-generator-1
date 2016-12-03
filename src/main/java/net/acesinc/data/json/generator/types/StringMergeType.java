@@ -15,6 +15,7 @@ public class StringMergeType extends TypeHandler {
 
     public static final String TYPE_NAME = "stringMerge";
     public static final String TYPE_DISPLAY_NAME = "String Merge";
+    public static final String SPACE="b";
 
     private String delimiter;
     private String[] stringsToMerge;
@@ -31,8 +32,14 @@ public class StringMergeType extends TypeHandler {
         for (int i = 0; i < stringsToMerge.length; i++) {
             String s = stringsToMerge[i];
             sb.append(s);
+
             if (i < stringsToMerge.length - 1) {
-                sb.append(delimiter);
+            	
+                if(SPACE.equalsIgnoreCase(delimiter)) {
+                	sb.append(" ");
+                } else {
+                	sb.append(delimiter);
+                }
             }
         }
         return sb.toString();

@@ -15,7 +15,6 @@ import net.acesinc.data.json.generator.config.JSONConfigReader;
 import net.acesinc.data.json.generator.log.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.paho.client.mqttv3.MqttException;
 
 /**
  *
@@ -54,7 +53,7 @@ public class JsonDataGenerator {
                     }
                     case "tranquility": {
                         log.info("Adding Tranqulity Logger with properties: " + elProps);
-                        loggers.add(new TranquilityLogger(elProps));
+                        //loggers.add(new TranquilityLogger(elProps));
                         break;
                     }
                     case "nats": {
@@ -71,20 +70,12 @@ public class JsonDataGenerator {
                         }
                         break;
                     }
-                    case "mqtt": {
-                        log.info("Adding MQTT Logger with properties: " + elProps);
-                        try {
-                            loggers.add(new MqttLogger(elProps));
-                        } catch (MqttException ex) {
-                            log.error("mqtt Logger unable to initialize", ex);
-                        }
-                        break;
-                    }
                 }
             }
             if (loggers.isEmpty()) {
                 throw new IllegalArgumentException("You must configure at least one Producer in the Simulation Config");
             }
+            
             simRunner = new SimulationRunner(simConfig, loggers);
         } catch (IOException ex) {
             log.error("Error getting Simulation Config [ " + simConfigString + " ]", ex);

@@ -62,58 +62,69 @@ public class EventGenerator implements Runnable {
                 runSequential();
                 break;
         }
+        
+        log.info("runworkFlow finished!!!");
     }
 
     protected void runSequential() {
         Iterator<WorkflowStep> it = workflow.getSteps().iterator();
-        while (running && it.hasNext()) {
+        long numRecs = 0;
+        while (running && numRecs <=workflow.getMaxRecords()) {
             WorkflowStep step = it.next();
             executeStep(step);
-
-            if (!it.hasNext() && workflow.isRepeatWorkflow()) {
-                it = workflow.getSteps().iterator();
-                try {
-                    performWorkflowSleep(workflow);
-                } catch (InterruptedException ie) {
-                    //wake up!
-                    running = false;
-                    break;
-                }
+            numRecs++;
+            if (!it.hasNext()) {
+            	it = workflow.getSteps().iterator();
+/*            	try {
+            		performWorkflowSleep(workflow);
+            	} catch (InterruptedException ie) {
+            		//wake up!
+            		running = false;
+            		break;
+            	} */
             }
 
         }
+        
+        log.info("runSquential finished!!! total numRecs" + numRecs);
     }
 
     protected void runRandom() {
         List<WorkflowStep> stepsCopy = new ArrayList<>(workflow.getSteps());
         Collections.shuffle(stepsCopy, new Random(System.currentTimeMillis()));
-        
+        long numRecs = 0;
         Iterator<WorkflowStep> it = stepsCopy.iterator();
         while (running && it.hasNext()) {
             WorkflowStep step = it.next();
             executeStep(step);
 
-            if (!it.hasNext() && workflow.isRepeatWorkflow()) {
-                Collections.shuffle(stepsCopy, new Random(System.currentTimeMillis()));
-                it = stepsCopy.iterator();
-                try {
-                    performWorkflowSleep(workflow);
-                } catch (InterruptedException ie) {
-                    //wake up!
-                    running = false;
-                    break;
-                }
-            }
+            if (!it.hasNext()) {
+            	numRecs++;	
+            	if(numRecs <= workflow.getMaxRecords()) {
+                    Collections.shuffle(stepsCopy, new Random(System.currentTimeMillis()));
+                    it = stepsCopy.iterator();
+                    try {
+                        performWorkflowSleep(workflow);
+                    } catch (InterruptedException ie) {
+                        //wake up!
+                        running = false;
+                        break;
+                    }
 
+            	}
+            }            
         }
     }
 
     protected void runRandomPickOne() {
+    	
+    	long numRecs = 0;
+    	
         while (running) {
             WorkflowStep step = workflow.getSteps().get(generateRandomNumber(0, workflow.getSteps().size() - 1));;
             executeStep(step);
-
-            if (workflow.isRepeatWorkflow()) {
+            numRecs++;
+            if (numRecs <= workflow.getMaxRecords()) {
                 try {
                     performWorkflowSleep(workflow);
                 } catch (InterruptedException ie) {
@@ -134,7 +145,7 @@ public class EventGenerator implements Runnable {
                 try {
                     String event = generateEvent(wrapper);
                     for (EventLogger l : eventLoggers) {
-                        l.logEvent(event, step.getProducerConfig());
+                        l.logEvent(event);
                     }
                     try {
                         performEventSleep(workflow);
@@ -157,7 +168,7 @@ public class EventGenerator implements Runnable {
                     wrapper.put(null, configs.get(generateRandomNumber(0, configs.size() - 1)));
                     String event = generateEvent(wrapper);
                     for (EventLogger l : eventLoggers) {
-                        l.logEvent(event, step.getProducerConfig());
+                        l.logEvent(event);
                     }
                     try {
                         performEventSleep(workflow);
@@ -181,7 +192,7 @@ public class EventGenerator implements Runnable {
                     wrapper.put(null, configs.get(generateRandomNumber(0, configs.size() - 1)));
                     String event = generateEvent(wrapper);
                     for (EventLogger l : eventLoggers) {
-                        l.logEvent(event, step.getProducerConfig());
+                        l.logEvent(event);
                     }
                     try {
                         performEventSleep(workflow);

@@ -45,27 +45,13 @@ public class KafkaLogger implements EventLogger {
         producer = new KafkaProducer<>(this.props);
         
         this.topic = (String) props.get("topic");
-        if (props.get("sync") != null) {
-            this.sync = (Boolean) props.get("sync");
-        } else {
-            this.sync = false;
-        }
-        
-        if (props.get("flatten") != null) {
-            this.flatten = (Boolean) props.get("flatten");
-        } else {
-            this.flatten = false;
-        }
-        
+        this.sync = (Boolean) props.get("sync");
+        this.flatten = (Boolean) props.get("flatten");
         this.jsonUtils = new JsonUtils();
     }
 
     @Override
-    public void logEvent(String event, Map<String, Object> producerConfig) {
-        logEvent(event);
-    }
-    
-    private void logEvent(String event) {
+    public void logEvent(String event) {
         boolean sync = false;
         
         String output = event;

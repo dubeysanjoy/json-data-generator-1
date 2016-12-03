@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.reflections.Reflections;
@@ -123,6 +124,78 @@ public class TypeHandlerFactory {
         }
     }
 
+    public TypeHandler getTypeHandler(String name, Map<String, Object> knownValues, String currentContext, String propName) throws IllegalArgumentException {
+        if (name.contains("(")) {
+            String typeName = name.substring(0, name.indexOf("("));
+            String args = name.substring(name.indexOf("(") + 1, name.indexOf(")"));
+            String[] helperArgs = {};
+            if (!args.isEmpty()) {
+                helperArgs = args.split(",");
+                helperArgs = prepareStrings(helperArgs);
+            }
+
+            List<String> resolvedArgs = new ArrayList<>();
+            for (String arg : helperArgs) {
+                if (arg.startsWith("this.") || arg.startsWith("cur.")) {
+                    String refPropName = null;
+                    if (arg.startsWith("this.")) {
+                        refPropName = arg.substring("this.".length(), arg.length());
+                    } else if (arg.startsWith("cur.")) {
+                        refPropName = currentContext + arg.substring("cur.".length(), arg.length());
+                    }
+                    Object refPropValue = knownValues.get(refPropName);
+                    if (refPropValue != null) {
+                        if (Date.class.isAssignableFrom(refPropValue.getClass())) {
+                            resolvedArgs.add(BaseDateType.INPUT_DATE_FORMAT.get().format((Date)refPropValue));
+                        } else {
+                            resolvedArgs.add(refPropValue.toString());
+                        }
+                    } else {
+                        log.warn("Sorry, unable to reference property [ " + refPropName + " ]. Maybe it hasn't been generated yet?");
+                    }
+                } else if(arg.startsWith("FieldReset(")){
+                	String _temp = args.substring(args.indexOf("FieldReset") + "FieldReset(".length());
+                	String[] _tempArr = _temp.split(",");
+                	String refField = currentContext + _tempArr[0].replaceAll("'", "");
+                	String refFieldVal = _tempArr[1].replaceAll("'", "").trim();
+                	Object refFieldActualVal = knownValues.get(refField);
+                	if(refFieldActualVal !=null) {
+                		resolvedArgs.add(refField);
+                		resolvedArgs.add(refFieldVal);
+                		resolvedArgs.add(refFieldActualVal.toString());
+                		log.debug("@@ refField:" + refField + " refFieldVal:" + refFieldVal + "refFieldActualVal" + refFieldActualVal );
+                	}
+                } else { 
+                    resolvedArgs.add(arg);
+                }
+            }
+            TypeHandler handler = typeHandlerCache.get(typeName+propName);
+            if (handler == null) {
+                Class handlerClass = typeHandlerNameMap.get(typeName);
+                if (handlerClass != null) {
+                    try {
+                        handler = (TypeHandler) handlerClass.newInstance();
+                        handler.setLaunchArguments(resolvedArgs.toArray(new String[]{}));
+
+                        typeHandlerCache.put(typeName+propName, handler);
+                    } catch (InstantiationException | IllegalAccessException ex) {
+                        log.warn("Error instantiating TypeHandler class [ " + handlerClass.getName() + " ]", ex);
+                    }
+
+                }
+            } else {
+                handler.setLaunchArguments(resolvedArgs.toArray(new String[]{}));
+            }
+
+            return handler;
+        } else {
+            //not a type handler
+            return null;
+        }
+    }
+    
+    
+    
     public static String[] prepareStrings(String[] list) {
         List<String> newList = new ArrayList<>();
         for (String item : list) {

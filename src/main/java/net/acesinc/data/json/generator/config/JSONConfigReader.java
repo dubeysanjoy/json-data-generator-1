@@ -41,4 +41,11 @@ public class JSONConfigReader {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(input, targetClass);
     }
+
+    public static <T> T readConfig(String input, Class<T> targetClass) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(input, targetClass);
+    }
+
+    
 }
