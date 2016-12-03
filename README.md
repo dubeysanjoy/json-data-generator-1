@@ -1,3 +1,7 @@
+
+Version1 : Few updates as per our requirements
+1) Be able to specify how many
+
 ## Json Data Generator
 
 <div style="text-align:center"><img src ="./src/design/logo.png" width="95%"/></div>

@@ -1,0 +1,17 @@
+{
+    "workflows": [{
+            "workflowName": "test",
+            "workflowFilename": "instClaimWorkflow.json"
+        }],
+    "producers": [{
+        "type":"logger"
+    },
+    {
+    	"type":"file",
+    	"output.directory": "C:/rakesh/temp/data",
+	"file.prefix": "instClaimData_",
+    	"file.extension":".json",
+    	"file.newLine" : "true",
+        "file.maxRecords":"10"
+    }]
+}

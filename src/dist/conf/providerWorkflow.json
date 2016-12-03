@@ -1,0 +1,86 @@
+{
+    "eventFrequency": 400,
+    "varyEventFrequency": true,
+    "repeatWorkflow": true,
+    "timeBetweenRepeat": 10,
+    "varyRepeatFrequency": true,
+    "maxRecords" : 10,
+    "steps": [{
+            "config": [{
+						"baseKey" : "long(111111111, 999999999)",
+						"filler_date" : "nowTimestamp()",
+						"_id" : "stringMerge(-, cur.baseKey, cur.filler_date)",
+						"processDate" : "now()",
+						"sourceIdentifier" : "x12_4050_274R_GroupSiteProvider_20141116_1129.edi",
+						"isLatest" : false,
+						"status" : "random('Accepted', 'Pending')",
+						"providerId" : "cur.baseKey",
+						"providerIdType" : "TA",
+						"alternateId" : [],
+						"filler" : "random('Associate', 'Healthcare', 'Doctors')",
+						"filler_fname" : "firstName()",
+						"organizationName" : "stringMerge(b, this.filler_fname, cur.filler)",
+						"providerType" : "QV",
+						"filler-street": "integer(1, 999)",
+						"filler-road" : "random('street', 'dr', 'rd', 'st')",
+						"addresses" : [
+					        {
+							"line1" : "stringMerge(b, cur.filler-street, firstName(), cur.filler-road)",
+							"city" : "random('Newark', 'Wayne', 'Pittsburgh', 'PHILADELPHIA')",
+							"state" : "random('NJ', 'PA', 'CA', 'MN', 'MA')",
+							"postalCode" : "integer(11111, 99999)",
+							"addressTypeCode1" : "random('HOM', 'MAIL', 'POBOX')"
+						    }
+		      			],
+						"taxonomies" : [],
+						"specialities" : [],
+						"specialtys" : [],
+						"medicareSpecialties" : [],
+						"providername_filler" :"random('General', 'Memorial', 'Sloan-Kettring')",
+						"providerlastname_filler" :"random('Hospital', 'Dukaan', 'Childrens Hospital')",
+						"providerAffiliations" : [ 
+	        				{
+								"id" : "long(11111111, 99999999)",
+								"name" : "stringMerge(b, this.providername_filler, providerlastname_filler)"
+	        				}
+						],
+						"communications" : [],
+						"sites" : [ 
+					        		{
+									"serviceIdentifierCode" : "77",
+									"additionalSiteName" : "MARTIN FAMILY PRACTICE",
+									"languagesSpokenAtSiteList" : [],
+									"workSchedules" : [],
+									"address" : {
+											"line1" : "123 WEST PORT DR",
+											"city" : "PHILADELPHIA",
+											"state" : "PA"
+										    },
+									"affiliatedEntities" : [ 
+					                			{
+										"id" : "this.providerAffiliations.id",
+										"name" : "GENERAL HOSPITAL",
+										"identifierCode" : "80",
+										"typeQualifier" : "2",
+										"identificationCodeQualifier" : "FI",
+										"address" : {
+												"line1" : "100 MAIN STREET",
+												"city" : "HARRISBURG",
+												"state" : "PA",
+												"postalCode" : "17110"
+											    },
+										"specialties" : [ 
+									                        {"taxonomyCode" : "207Q00000X"}
+								                    ]
+					                			}
+									],
+									"specialties" : [ 
+									                {"taxonomyCode" : "207Q00000X"}
+							                		]
+					        		}
+							],
+						"licenses" : []
+			}],
+            "duration": 0
+        }]
+}

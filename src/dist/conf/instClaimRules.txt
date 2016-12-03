@@ -1,0 +1,27 @@
+baseKey 	alphaNumeric(17)
+claimNumber	baseKey
+claimLineNumber sequence(1-76)
+
+admissionDate - timestamp()
+
+id: baseKey - claimLineNumber - random(21611118513432156)    [done]
+
+claimReceivedDate - range(now - 27 months)
+
+
+memberId: alpha(4) - integer(8) - alpha(6)		      	
+membershipId- same memberId
+
+processDate  -timestamp()
+
+subscriberFirstName = randomName
+
+subscriberGender - M | F
+
+subscriberLastName = lastName
+
+subscriberId - same as memberId
+
+
+Data Hierarchy:
+One Base Key - Many Claim Numbers - 1-76 Line Numbers
