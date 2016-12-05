@@ -9,6 +9,6 @@
 		"file.prefix": "providerIdsOnlyData_",
     	"file.extension":".json",
     	"file.newLine" : "true",
-        "file.maxRecords":"100"
+        "file.maxRecords":"500"
     }]
 }

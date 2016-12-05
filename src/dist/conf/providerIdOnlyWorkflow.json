@@ -4,7 +4,7 @@
     "repeatWorkflow": true,
     "timeBetweenRepeat": 10,
     "varyRepeatFrequency": true,
-    "maxRecords" : 100,
+    "maxRecords" : 500,
     "steps": [{
             "config": [{
 			    "providerId":"long(111111111,999999999)"
