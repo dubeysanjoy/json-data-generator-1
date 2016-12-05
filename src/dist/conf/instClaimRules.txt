@@ -25,3 +25,10 @@ subscriberId - same as memberId
 
 Data Hierarchy:
 One Base Key - Many Claim Numbers - 1-76 Line Numbers
+
+
+
+================================= PROVIDER ====================
+
+providerId = 231557218
+

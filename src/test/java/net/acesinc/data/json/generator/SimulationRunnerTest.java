@@ -93,6 +93,17 @@ public class SimulationRunnerTest {
 		log.info("Total Time:" + (System.currentTimeMillis() - start));
 	}
 	
+	@Test public void testRunSimulation_providerIdOnly() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("providerIdOnlyConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}
 	
 	
 	

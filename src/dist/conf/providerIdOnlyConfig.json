@@ -1,0 +1,14 @@
+{
+    "workflows": [{
+            "workflowName": "test",
+            "workflowFilename": "providerIdOnlyWorkflow.json"
+        }],
+    "producers": [{
+    	"type":"file",
+    	"output.directory": "C:/rakesh/temp/data",
+		"file.prefix": "providerIdsOnlyData_",
+    	"file.extension":".json",
+    	"file.newLine" : "true",
+        "file.maxRecords":"100"
+    }]
+}
