@@ -87,6 +87,7 @@ public class RandomFromFile extends TypeHandler {
 			// if file is not in classpath then inputstream will be null
 			BufferedReader br = null;
 			if(is == null) {
+				log.warn(String.format("File %s is not in classpath", fileName));
 				File f = new File(fileName);
 				br = new BufferedReader(new FileReader(f));
 			} else {

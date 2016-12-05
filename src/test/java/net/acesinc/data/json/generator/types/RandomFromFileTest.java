@@ -15,7 +15,7 @@ public class RandomFromFileTest {
 	
 		randomGen = new RandomFromFile();
 		
-		String[] launchArguments = {"memberIdsData_1323125489762931089.json"};
+		String[] launchArguments = {"C:\\rakesh\\temp\\data\\memberIdsData_6879622688657050390.json"};
 		randomGen.setLaunchArguments(launchArguments);
 		
 		for(int i=0; i<=7; i++) {
