@@ -1,0 +1,14 @@
+{
+    "eventFrequency": 40,
+    "varyEventFrequency": true,
+    "repeatWorkflow": true,
+    "timeBetweenRepeat": 10,
+    "varyRepeatFrequency": true,
+    "maxRecords" : 2000,
+    "steps": [{
+            "config": [{
+			    "memberId":"stringMerge(, alpha(4), integer(11111111-99999999), alpha(6))"
+		    }],
+            "duration": 0
+        }]
+}

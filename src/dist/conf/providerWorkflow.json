@@ -11,7 +11,8 @@
 						"filler_date" : "nowTimestamp()",
 						"_id" : "stringMerge(-, cur.baseKey, cur.filler_date)",
 						"processDate" : "now()",
-						"sourceIdentifier" : "x12_4050_274R_GroupSiteProvider_20141116_1129.edi",
+						"srcfiller2" : "stringMerge(_, 'x12_4050_274R_GroupSiteProvider_20141116', 'MID', alpha(1))",
+						"sourceIdentifier" : "stringMerge(., cur.srcfiller2,'edi')",
 						"isLatest" : false,
 						"status" : "random('Accepted', 'Pending')",
 						"providerId" : "cur.baseKey",
@@ -58,18 +59,18 @@
 										    },
 									"affiliatedEntities" : [ 
 					                			{
-										"id" : "this.providerAffiliations.id",
-										"name" : "GENERAL HOSPITAL",
-										"identifierCode" : "80",
-										"typeQualifier" : "2",
-										"identificationCodeQualifier" : "FI",
-										"address" : {
+											"id" : "this.providerAffiliations.id",
+											"name" : "GENERAL HOSPITAL",
+											"identifierCode" : "80",
+											"typeQualifier" : "2",
+											"identificationCodeQualifier" : "FI",
+											"address" : {
 												"line1" : "100 MAIN STREET",
 												"city" : "HARRISBURG",
 												"state" : "PA",
 												"postalCode" : "17110"
 											    },
-										"specialties" : [ 
+											"specialties" : [ 
 									                        {"taxonomyCode" : "207Q00000X"}
 								                    ]
 					                			}

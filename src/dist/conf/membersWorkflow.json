@@ -1,0 +1,79 @@
+{
+    "eventFrequency": 40,
+    "varyEventFrequency": true,
+    "repeatWorkflow": true,
+    "timeBetweenRepeat": 10,
+    "varyRepeatFrequency": true,
+    "maxRecords" : 5,
+    "steps": [{
+            "config": [{
+		        "addressLine1": "6775 MAPLE GROVE",
+		        "addressLine2": null,
+			    "baseKey":"randomFromFile(memberIdsData_1323125489762931089.json)",
+			    "id_filler":"nowTimestamp()",
+		        "_id": "stringMerge(-,this.baseKey, cur.id_filler)",
+		        "city": "KINGSTON",
+		        "clientId": "HCS",
+		        "clientName": "Health Care Service Corporation",
+		        "communications": [],
+		        "countryCode": "US",
+		        "coverages": [
+		            {
+		                "chemicalDependency": "Y",
+		                "coordinationOfBenefits": [
+		                    {
+		                        "code": "0",
+		                        "effectiveDate": 1372651200000,
+		                        "flag": "N",
+		                        "midrEligPidInCoverages": 746,
+		                        "terminationDate": 1404100800000
+		                    }
+		                ],
+		                "dental": "Y",
+		                "disabilityFlag": "N",
+		                "divisionId": "G9814031073",
+		                "effectiveDate": 1372651200000,
+		                "healthPlanProduct": "H613018451",
+		                "medical": "N",
+		                "membershipId": "this.baseKey",
+		                "mentalHealth": "Y",
+		                "midrEligPid": null,
+		                "organizationId": "E5394852814",
+		                "organizationName": "EMPLR 5394852814",
+		                "payerCoordinatingId": "88",
+		                "pharmacy": "Y",
+		                "planFiller" :"integer(11, 99)",
+		                "planId": "stringMerge(,'P92925608', planFiller)",
+		                "providers": [],
+		                "relationship": "1",
+		                "subscriberId": "this.baseKey",
+		                "terminationDate": 1404100800000,
+		                "vision": "N"
+		            }
+		        ],
+		        "dateOfBirth": "timestamp(\"1940/01/01T00:00:00\", \"2015/12/31T00:00:00\")",
+		        "firstName": "firstName()",
+		        "gender": "random('M','F')",
+		        "isLatest": true,
+		        "lastName": "lastName()",
+		        "memberId": "cur.baseKey",
+		        "memberIds": [],
+		        "middleName": null,
+		        "midrPrsnPid": null,
+		        "postalCode": "integer(11111, 99999)",
+		        "prefix": null,
+		        "processDate": "nowTimestamp()",
+		        "race": null,
+		        "srcfiller" : "alpha(1)",
+		        "sourceIdentifier": "stringMerge(, MID, cur.srcfiller)",
+		        "ssn": null,
+		        "state": "PA",
+		        "status": "Accepted",
+		        "subClientId": "NM1",
+		        "subClientName": "Blue Cross Blue Shield of New Mexico",
+		        "subscriberId": "this.baseKey",
+		        "suffix": null
+		    }],
+            "duration": 0
+        }]
+}

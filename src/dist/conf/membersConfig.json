@@ -1,0 +1,14 @@
+{
+    "workflows": [{
+            "workflowName": "test",
+            "workflowFilename": "membersWorkflow.json"
+        }],
+    "producers": [{
+    	"type":"file",
+    	"output.directory": "C:/rakesh/temp/data",
+		"file.prefix": "membersData_",
+    	"file.extension":".json",
+    	"file.newLine" : "true",
+        "file.maxRecords":"5"
+    }]
+}

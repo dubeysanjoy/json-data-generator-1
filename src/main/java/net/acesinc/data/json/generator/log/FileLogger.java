@@ -112,7 +112,7 @@ public class FileLogger implements EventLogger {
 			if (checkStatus()) {
 				FileUtils.writeStringToFile(_file, event, "UTF-8", true);
 
-				if(!checkFutureStatus()) {
+				if(checkFutureStatus()) {
 					FileUtils.writeStringToFile(_file, JSON_TUPLE_DELIMITER, "UTF-8", true);
 				}
 				

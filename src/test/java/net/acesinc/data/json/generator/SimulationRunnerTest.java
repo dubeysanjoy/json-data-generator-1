@@ -38,7 +38,7 @@ public class SimulationRunnerTest {
 		File _f = new File(filename)
 	}*/
 	
-	@Test public void testRunSimulation() {
+	@Test public void testRunSimulation() { 
 		JsonDataGenerator _dataGen = new JsonDataGenerator(configFile);
 		
 		
@@ -66,6 +66,34 @@ public class SimulationRunnerTest {
 		log.info("Total Time:" + (System.currentTimeMillis() - start));
 	}
 
+
+	@Test public void testRunSimulation_member() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("membersConfig.json");
+		
+		
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}
+
+	@Test public void testRunSimulation_memberIdOnly() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("memberIdConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}
+	
+	
 	
 	
 	@Ignore public void testGetProcessors() {
