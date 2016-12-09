@@ -54,6 +54,7 @@ public class FileLogger implements EventLogger {
 	public static final String FILE_EXTENSION_PROP_NAME = "file.extension";
 	public static final String FILE_MAXRECORDS_PROP_NAME = "file.maxRecords";
 	public static final String FILE_NEWLINE_PROP_NAME = "file.newLine";
+	public static final String FILE_NEWLINE_DELIMI_PROP_NAME = "file.newLineDelimiter";
 	public static final String JSON_ROOT_START_ELEMENT="[";
 	public static final String JSON_ROOT_END_ELEMENT="]";
 	public static final String JSON_TUPLE_DELIMITER=",";
@@ -67,6 +68,7 @@ public class FileLogger implements EventLogger {
 	private long numTuples;
 	private File _file;
 	private boolean newLine;
+	private String newLineDelimiter;
 
 	public FileLogger(Map<String, Object> props) throws IOException {
 		String outputDir = (String) props.get(OUTPUT_DIRECTORY_PROP_NAME);
@@ -89,6 +91,8 @@ public class FileLogger implements EventLogger {
 
 		newLine = (props.get(FILE_NEWLINE_PROP_NAME) == null) ? false : Boolean.valueOf((String) props.get(FILE_NEWLINE_PROP_NAME));
 
+		newLineDelimiter=(props.get(FILE_NEWLINE_DELIMI_PROP_NAME) == null) ? JSON_TUPLE_DELIMITER : (String) props.get(FILE_NEWLINE_DELIMI_PROP_NAME);
+		
 	}
 
 	@Override
@@ -113,7 +117,7 @@ public class FileLogger implements EventLogger {
 				FileUtils.writeStringToFile(_file, event, "UTF-8", true);
 
 				if(checkFutureStatus()) {
-					FileUtils.writeStringToFile(_file, JSON_TUPLE_DELIMITER, "UTF-8", true);
+					FileUtils.writeStringToFile(_file, newLineDelimiter, "UTF-8", true);
 				}
 				
 				if (newLine) {
