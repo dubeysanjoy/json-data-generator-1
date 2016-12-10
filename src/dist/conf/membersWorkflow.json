@@ -54,7 +54,7 @@
 		        "dateOfBirth": "timestamp(\"1940/01/01T00:00:00\", \"2015/12/31T00:00:00\")",
 		        "firstName": "firstName()",
 		        "gender": "random('M','F')",
-		        "isLatest": true,
+		        "isLatest": "false",
 		        "lastName": "lastName()",
 		        "memberId": "cur.baseKey",
 		        "memberIds": [],

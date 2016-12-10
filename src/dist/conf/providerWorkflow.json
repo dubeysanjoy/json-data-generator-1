@@ -13,7 +13,7 @@
 						"processDate" : "now()",
 						"srcfiller2" : "stringMerge(_, 'x12_4050_274R_GroupSiteProvider_20141116', 'MID', alpha(1))",
 						"sourceIdentifier" : "stringMerge(., cur.srcfiller2,'edi')",
-						"isLatest" : false,
+						"isLatest" : "false",
 						"status" : "random('Accepted', 'Pending')",
 						"providerId" : "cur.baseKey",
 						"providerIdType" : "TA",
