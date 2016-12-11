@@ -4,10 +4,10 @@
     "repeatWorkflow": true,
     "timeBetweenRepeat": 10,
     "varyRepeatFrequency": true,
-    "maxRecords" : 10,
+    "maxRecords" : 500 ,
     "steps": [{
             "config": [{
-						"baseKey" : "long(111111111, 999999999)",
+						"baseKey" : "randomFromFile(providerIdsOnlyData_7639283631883260544.json)",
 						"filler_date" : "nowTimestamp()",
 						"_id" : "stringMerge(-, cur.baseKey, cur.filler_date)",
 						"processDate" : "now()",
