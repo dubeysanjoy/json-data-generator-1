@@ -1,0 +1,14 @@
+{
+    "workflows": [{
+            "workflowName": "megEpisode",
+            "workflowFilename": "megEpisodeWF.json"
+        }],
+    "producers": [{
+    	"type":"file",
+    	"output.directory": "C:/rakesh/temp/data",
+		"file.prefix": "megEpisode_",
+    	"file.extension":".json",
+    	"file.newLine" : "true",
+        "file.maxRecords":"5"
+    }]
+}

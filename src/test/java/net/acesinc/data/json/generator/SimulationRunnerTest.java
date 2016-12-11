@@ -105,6 +105,17 @@ public class SimulationRunnerTest {
 		log.info("Total Time:" + (System.currentTimeMillis() - start));
 	}
 	
+	@Test public void testRunSimulation_megEpisode() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("megEpisodeConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}
 	
 	
 	@Ignore public void testGetProcessors() {

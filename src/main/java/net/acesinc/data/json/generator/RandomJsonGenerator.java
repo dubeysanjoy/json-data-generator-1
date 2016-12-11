@@ -23,6 +23,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import net.acesinc.data.json.generator.types.IntegerType;
 import net.acesinc.data.json.generator.types.TypeHandler;
 import net.acesinc.data.json.generator.types.TypeHandlerFactory;
 import net.acesinc.data.json.util.JsonUtils;
@@ -190,6 +191,27 @@ public class RandomJsonGenerator {
                                 processItem(item, gen, newContext + "[0]");
                                 break;
                             }
+                            case "integer": {
+                                int max = 1;
+                                if (specialFuncArgs.length == 1) {
+                                	try {
+                                		int tempmax = Integer.parseInt(specialFuncArgs[0]);
+                                		max = new RandomDataGenerator().nextInt(1, tempmax);
+                                		log.info("@#$% Array random is" + max);
+                                	} catch (NumberFormatException ne) {
+                                		max = new RandomDataGenerator().nextInt(0, 10);
+                                	}
+                                } else {
+                                    max = new RandomDataGenerator().nextInt(0, 10);
+                                }
+                                
+                                List<Object> subList = listOfItems.subList(1, listOfItems.size());
+                                for (int i = 0; i < max; i++) {
+                                    processList(subList, gen, newContext);
+                                }
+                                break;
+                            }
+                            
                         }
                     } else { //it's not a special function, so just add it
                         processList(listOfItems, gen, newContext);

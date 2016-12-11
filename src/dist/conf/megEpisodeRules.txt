@@ -1,0 +1,22 @@
+_id: objectId("asdasd"), alpha 
+memberId: randomFromFile(memberid file)
+processEndDate: 1/1/2015 to 11/30/2016
+
+episodes: Array Random (1-100)
+
+	epiodeStartDate:  must be greater than or equal to process Enddate.
+	epiodeEndDate: greater than episode start Date must be less process end date
+	episodeSummaryGroup: range (1,9999)
+	conditionCode: MMC + int(1111,9999)
+	diseaseStage : 1. 1-99
+	severity : random("L", "M", "H")
+	episodeCompleteFlag: random("Y", "N")
+	chronicFlag: random("Y", "N")
+	episodeAllowAmmount: double (1.00- 9999.99)
+	subconditioncode: "MSC" + random(11111,99999)
+	episodeSid: sequence from array random( 1-100)
+	sourceidentifier: "Daily Analytics"
+	subClientId : "NM1"
+	
+	
+	
