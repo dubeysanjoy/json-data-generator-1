@@ -19,7 +19,7 @@ public class DoubleType extends TypeHandler {
     private double min;
     private double max;
     private Random rand;
-    private int decimalPlaces = 4;
+    private int decimalPlaces = 2;
 
     public DoubleType() {
         super();

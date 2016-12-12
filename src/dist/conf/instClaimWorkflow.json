@@ -52,7 +52,7 @@
 			  "endOfServiceDate":"now()",
 			  "healthPlanCode":"H613018451",
 			  "isLatest":"false",
-			  "memberId":"randomFromFile(memberIdsData_1323125489762931089.json)",
+			  "memberId":"randomFromFile(memberIdsData_6879622688657050390.json)",
 			  "membershipId":"cur.memberId",
 			  "organizationId":"E679287285",
 			  "placeOfService":"21",

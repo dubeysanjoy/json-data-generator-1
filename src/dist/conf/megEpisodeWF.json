@@ -10,7 +10,6 @@
 			        "_id" : "stringMerge(,ObjectId(57d5c85d088b5e0f5, alpha(7),))",
 			        "memberId" : "randomFromFile(memberIdsData_6879622688657050390.json)",
 			        "processEndDate" : "date('2015/01/01T00:00:00','2016/11/30T00:00:00')",
-			        "fillerepisode" : "integer(1,100)",
 			        "episodes" : [
 			        		"integer(99)",
 			                {
@@ -18,6 +17,7 @@
 			                        "episodeEndDate" : "date('2015/01/01T00:00:00','2016/11/30T00:00:00')",
 			                        "episodeSummaryGroup" : "integer(1,999)",
 			                        "conditionCode" : "stringMerge(,MCC, integer(1111-9999))",
+			                        "conditionCodeDescription" : "Pneumonia, Bacterial",
 			                        "diseaseStage" : "double(1.00, 1,99)",
 			                        "severity" : "random('L', 'M', 'H')",
 			                        "episodeCompleteFlag" : "random('Y', 'N')",
@@ -25,6 +25,7 @@
 			                        "episodeAllowAmount" : "double(1.00, 9999.99)",
 			                        "subConditionCode" : "stringMerge(,MSC,integer(11111-99999))",
 			                        "episodeSid" : "counter('episodeSeq',1,100)",
+			                        "subConditionCodeDescription" : "Bacterial Pneumonia",
 			                        "subClientId" : "NM1"
 			                }],
 			        "sourceIdentifier" : "Daily Analytics",
