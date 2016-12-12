@@ -4,7 +4,7 @@
     "repeatWorkflow": true,
     "timeBetweenRepeat": 10,
     "varyRepeatFrequency": true,
-    "maxRecords" : 10,
+    "maxRecords" : 2000,
     "steps": [{
             "config": [{
 			  "baseKey": "alphaNumeric(17, true)",

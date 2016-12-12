@@ -12,6 +12,6 @@
 	"file.prefix": "instClaimData_",
     	"file.extension":".json",
     	"file.newLine" : "true",
-        "file.maxRecords":"10"
+        "file.maxRecords":"2000"
     }]
 }
