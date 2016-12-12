@@ -62,7 +62,7 @@ public class RandomFromFile extends TypeHandler {
 		if(valuesArr ==null || valuesArr.size() <=0) {
 			return "null";
 		}
-		String retVal = valuesArr.get(getRand().nextInt(0, valuesArr.size()-1));
+		String retVal = valuesArr.get(getRand().nextInt(0, valuesArr.size()-2));
 		
 		String[] _data = retVal.substring(retVal.indexOf("{"), retVal.indexOf("}")).split(":");
 		 
