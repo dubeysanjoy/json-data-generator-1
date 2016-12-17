@@ -5,7 +5,7 @@
         }],
     "producers": [{
     	"type":"file",
-    	"output.directory": "C:/rakesh/temp/data",
+    	"output.directory": "data",
 		"file.prefix": "membersData_",
     	"file.extension":".json",
     	"file.newLine" : "true",

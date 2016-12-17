@@ -1,4 +1,12 @@
 
+############### How To run From CLI #######################3
+
+build command: mvn -DskipTests clean package
+tar -xvf <binary.tar>
+
+#############################################################
+
+
 Version1 : Few updates as per our requirements
 1) Be able to specify how many
 
