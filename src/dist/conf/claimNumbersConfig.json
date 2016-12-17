@@ -1,0 +1,14 @@
+{
+    "workflows": [{
+            "workflowName": "test",
+            "workflowFilename": "claimNumbersWF.json"
+        }],
+    "producers": [{
+    	"type":"file",
+    	"output.directory": "C:/rakesh/temp/data",
+		"file.prefix": "claimNumbersData_",
+    	"file.extension":".json",
+    	"file.newLine" : "true",
+        "file.maxRecords":"10000"
+    }]
+}

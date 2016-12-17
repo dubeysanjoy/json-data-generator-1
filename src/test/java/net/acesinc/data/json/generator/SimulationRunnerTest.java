@@ -116,7 +116,18 @@ public class SimulationRunnerTest {
 		
 		log.info("Total Time:" + (System.currentTimeMillis() - start));
 	}
-	
+
+	@Test public void testRunSimulation_claimNumbers() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("claimNumbersConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}	
 	
 	@Ignore public void testGetProcessors() {
 		int cpus = Runtime.getRuntime().availableProcessors();
