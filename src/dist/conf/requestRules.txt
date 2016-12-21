@@ -1,0 +1,16 @@
+_id: request + counter(100000,999999)
+memberId : readFromFile
+AdmitDate: date range 1,1,2015 to 11/30/2016 (DateTime Format)
+RequestCreatedDateTime = date rnage 1,1,2015 to 11/30/2016
+
+providerMCOID (Everywhere in doc) = readFromFile(providerMasterDataFile)
+firstName
+lastName
+
+
+fromDate: 1,1,2015 to 11/30/2015
+throughDate: greater fromDate and endDate 11/30/2015
+
+notifyDateTime(this.requestCreatedDateTime)
+
+requestedUnits: integer(1,99)

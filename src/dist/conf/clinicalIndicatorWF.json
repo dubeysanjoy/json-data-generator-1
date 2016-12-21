@@ -4,7 +4,7 @@
     "repeatWorkflow": true,
     "timeBetweenRepeat": 10,
     "varyRepeatFrequency": true,
-    "maxRecords" : 5,
+    "maxRecords" : 20,
     "steps": [{
             "config": [{
 		        "_id" : "stringMerge(,ObjectId(57d5c85d088b5e0f5, alpha(7),))",
@@ -30,7 +30,7 @@
 						"ruleProgramCode" : "CCM",
 						"ruleType" : "GCM",
 						"gapsInCareIndicatorDescription" : "Patient Findings",
-						"ruleId" : "stringMerge(,CIRI, 028)",
+						"ruleId" : "stringMerge(,CIRI, integer(100-999))",
 						"conditionCode" : "UNKNOWN"
 					}
 				],

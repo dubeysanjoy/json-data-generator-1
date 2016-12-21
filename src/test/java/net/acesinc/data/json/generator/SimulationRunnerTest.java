@@ -128,6 +128,82 @@ public class SimulationRunnerTest {
 		
 		log.info("Total Time:" + (System.currentTimeMillis() - start));
 	}	
+
+	@Test public void testRunSimulation_request() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("requestConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}	
+
+	@Test public void testRunSimulation_episodeClaims() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("episodeClaimsConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}	
+	
+	@Test public void testRunSimulation_professionalClaims() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("professionalClaimsConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}	
+	
+	
+	@Test public void testRunSimulation_clinicalIndicator() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("clinicalIndicatorConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}	
+
+	
+	@Test public void testRunSimulation_memberProviderAttrib() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("memberProviderAttribConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}	
+
+	@Test public void testRunSimulation_rxClaims() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("rxClaimsConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}	
+	
+	
 	
 	@Ignore public void testGetProcessors() {
 		int cpus = Runtime.getRuntime().availableProcessors();

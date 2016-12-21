@@ -1,0 +1,25 @@
+{
+    "eventFrequency": 40,
+    "varyEventFrequency": true,
+    "repeatWorkflow": true,
+    "timeBetweenRepeat": 10,
+    "varyRepeatFrequency": true,
+    "maxRecords" : 20,
+    "steps": [{
+            "config": [{
+			        "_id" : "stringMerge(,ObjectId(55ea8f510cf20eb22, alpha(7))",
+			        "subClientId" :"NM1",
+			        "memberId" : "randomFromFile(memberIdsData_6879622688657050390.json)",
+			        "episodeSid" :"counter('seq',1,100))",
+			        "claimNumber" : "randomFromFile(claimNumbersData_5068598918962580065.json)",
+			        "claimLineNumber" :"counter('lineseq', 1, 100))",
+			        "claimType" : "FCLTY",
+			        "processEndDate" : "date('2015/01/01T00:00:00','2016/11/30T00:00:00')"
+			}],
+            "duration": 0
+        }]
+}
+
+
+
+

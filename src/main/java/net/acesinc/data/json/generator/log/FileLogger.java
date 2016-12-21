@@ -86,6 +86,7 @@ public class FileLogger implements EventLogger {
 		try {
 			maxRecords = Long.parseLong((String) (props.get(FILE_MAXRECORDS_PROP_NAME)));
 		} catch (Exception ex) {
+			log.warn("###  Error parsing maxRecord defaulting to 100");
 			maxRecords = 100;
 		}
 
@@ -109,7 +110,7 @@ public class FileLogger implements EventLogger {
 				
 				log.info("initilizing new file???" + _file.getName());
 				
-				FileUtils.writeStringToFile(_file, JSON_ROOT_START_ELEMENT);
+//				FileUtils.writeStringToFile(_file, JSON_ROOT_START_ELEMENT);
 			}
 
 			// write only if maxRecords have not been reached.
@@ -128,7 +129,7 @@ public class FileLogger implements EventLogger {
 			} else {
 				// write end root doc
 				initialized = false;
-				FileUtils.writeStringToFile(_file, JSON_ROOT_END_ELEMENT, "UTF-8", true);
+//				FileUtils.writeStringToFile(_file, JSON_ROOT_END_ELEMENT, "UTF-8", true);
 				
 			}
 		} catch (IOException ioe) {

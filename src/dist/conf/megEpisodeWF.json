@@ -3,7 +3,7 @@
     "varyEventFrequency": true,
     "repeatWorkflow": true,
     "varyRepeatFrequency": true,
-    "maxRecords" : 5,
+    "maxRecords" : 20,
     "steps": [{
             "config": [{
 			        "_id" : "stringMerge(,ObjectId(57d5c85d088b5e0f5, alpha(7),))",
@@ -13,12 +13,16 @@
 			        		"integer(99)",
 			                {
 			                        "episodeStartDate" : "date('2015/01/01T00:00:00','2016/11/30T00:00:00')",
-			                        "episodeEndDate" : "date('2015/01/01T00:00:00','2016/11/30T00:00:00')",
+			                        "episodeEndDate" : "date(cur.episodeStartDate,cur.processEndDate)",
 			                        "episodeSummaryGroup" : "integer(1,999)",
 			                        "conditionCode" : "stringMerge(,MCC, integer(1111-9999))",
 			                        "conditionCodeDescription" : "Pneumonia, Bacterial",
 			                        "diseaseStage" : "double(1.00, 1,99)",
+			                        "episodeAllowedAmount" : "double(1.00, 9999.99)",
 			                        "severity" : "random('L', 'M', 'H')",
+			                        "episodeSummaryGroup" :"1499",
+			                        "episodeGroup" : "432",
+			                        "processEndDate" : "date('2015/01/01T00:00:00','2016/11/30T00:00:00')",
 			                        "episodeCompleteFlag" : "random('Y', 'N')",
 			                        "chronicFlag" : "random('Y', 'N')",
 			                        "episodeAllowAmount" : "double(1.00, 9999.99)",
@@ -28,7 +32,7 @@
 			                        "subClientId" : "NM1"
 			                }],
 			        "sourceIdentifier" : "Daily Analytics",
-			        "status" : "random('Accepted', 'Rejected')"
+			        "status" : "randomWeighted('Accepted', 'Rejected', 95:5)"
 			}],
             "duration": 0
         }]

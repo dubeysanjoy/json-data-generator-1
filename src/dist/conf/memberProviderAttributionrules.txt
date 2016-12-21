@@ -1,0 +1,4 @@
+id: ObjectID (See clinical _id rule)
+
+createdTimestamp: 1,1,2015, to 11/30/2016
+processEndDate: range(createTimeStamp, 11/30/2016)

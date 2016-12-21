@@ -4,14 +4,11 @@
             "workflowFilename": "instClaimWorkflow.json"
         }],
     "producers": [{
-        "type":"logger"
-    },
-    {
     	"type":"file",
     	"output.directory": "data",
-	"file.prefix": "instClaimData_",
+		"file.prefix": "instClaimData_",
     	"file.extension":".json",
     	"file.newLine" : "true",
-        "file.maxRecords":"2000"
+        "file.maxRecords":"100000"
     }]
 }

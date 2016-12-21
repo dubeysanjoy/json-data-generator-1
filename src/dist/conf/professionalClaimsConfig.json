@@ -1,12 +1,12 @@
 {
     "workflows": [{
-            "workflowName": "megEpisode",
-            "workflowFilename": "megEpisodeWF.json"
+            "workflowName": "test",
+            "workflowFilename": "professionalClaimsWF.json"
         }],
     "producers": [{
     	"type":"file",
     	"output.directory": "data",
-		"file.prefix": "megEpisodesData_",
+		"file.prefix": "professionalClaimsData_",
     	"file.extension":".json",
     	"file.newLine" : "true",
         "file.maxRecords":"20"

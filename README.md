@@ -3,6 +3,8 @@
 
 build command: mvn -DskipTests clean package
 tar -xvf <binary.tar>
+cd to new folder
+java -jar <jarname> <configfilename>
 
 #############################################################
 

@@ -1,12 +1,12 @@
 {
     "workflows": [{
-            "workflowName": "megEpisode",
-            "workflowFilename": "megEpisodeWF.json"
+            "workflowName": "test",
+            "workflowFilename": "memberProviderAttributionWF.json"
         }],
     "producers": [{
     	"type":"file",
     	"output.directory": "data",
-		"file.prefix": "megEpisodesData_",
+		"file.prefix": "memberProviderAttributionData_",
     	"file.extension":".json",
     	"file.newLine" : "true",
         "file.maxRecords":"20"
