@@ -3,14 +3,14 @@
     "varyEventFrequency": true,
     "repeatWorkflow": true,
     "varyRepeatFrequency": true,
-    "maxRecords" : 20,
+    "maxRecords" : 20000,
     "steps": [{
             "config": [{
 			        "_id" : "stringMerge(,ObjectId(57d5c85d088b5e0f5, alpha(7),))",
 			        "memberId" : "randomFromFile(memberIdsData_6879622688657050390.json)",
 			        "processEndDate" : "date('2015/01/01T00:00:00','2016/11/30T00:00:00')",
 			        "episodes" : [
-			        		"integer(99)",
+			        		"integer(10)",
 			                {
 			                        "episodeStartDate" : "date('2015/01/01T00:00:00','2016/11/30T00:00:00')",
 			                        "episodeEndDate" : "date(cur.episodeStartDate,cur.processEndDate)",

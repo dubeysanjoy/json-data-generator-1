@@ -99,9 +99,9 @@ public class RandomFromFile extends TypeHandler {
 				valuesArr.add(line);
 			}
 			
-			log.info(valuesArr.size());
-			log.info("first line"+ valuesArr.get(0));
-			log.info("last line"+ valuesArr.get(valuesArr.size()-1));
+			//log.info(valuesArr.size());
+			//log.info("first line"+ valuesArr.get(0));
+			//log.info("last line"+ valuesArr.get(valuesArr.size()-1));
 		} catch (IOException ex) {
 			log.error("Unable to read file", fileName);
 		}
@@ -117,7 +117,7 @@ public class RandomFromFile extends TypeHandler {
 			JsonReader rdr = Json.createReader(new FileInputStream(f));
 			JsonObject _data= rdr.readObject();
 			
-			log.info(_data);
+			//log.info(_data);
 		} catch (Exception ex) {
 			log.error("Unable to read file", fileName);
 		}

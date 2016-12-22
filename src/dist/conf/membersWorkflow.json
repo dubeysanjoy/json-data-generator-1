@@ -4,7 +4,7 @@
     "repeatWorkflow": true,
     "timeBetweenRepeat": 10,
     "varyRepeatFrequency": true,
-    "maxRecords" : 5,
+    "maxRecords" : 20,
     "steps": [{
             "config": [{
 		        "addressLine1": "6775 MAPLE GROVE",
@@ -42,8 +42,7 @@
 		                "organizationName": "EMPLR 5394852814",
 		                "payerCoordinatingId": "88",
 		                "pharmacy": "Y",
-		                "planFiller" :"integer(11, 99)",
-		                "planId": "stringMerge(,'P92925608', planFiller)",
+		                "planId": "stringMerge(,'P92925608', integer11-99))",
 		                "providers": [],
 		                "relationship": "1",
 		                "subscriberId": "this.baseKey",
@@ -64,8 +63,7 @@
 		        "prefix": null,
 		        "processDate": "nowTimestamp()",
 		        "race": null,
-		        "srcfiller" : "alpha(1)",
-		        "sourceIdentifier": "stringMerge(, MID, cur.srcfiller)",
+		        "sourceIdentifier": "stringMerge(, MID, alpha(1))",
 		        "ssn": null,
 		        "state": "PA",
 		        "status": "Accepted",

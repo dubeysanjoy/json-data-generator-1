@@ -1,9 +1,9 @@
 {
-    "eventFrequency": 40,
+    "eventFrequency": 4,
     "varyEventFrequency": true,
     "repeatWorkflow": true,
     "varyRepeatFrequency": true,
-    "maxRecords" : 20,
+    "maxRecords" : 100000,
     "steps": [{
             "config": [{
             	"baseKey": "alphaNumeric(17, true)",
@@ -13,7 +13,7 @@
 				"subClientId" : "NM1",
 				"isLatest" : "false",
 				"processDate" : "date('2015/01/01T00:00:00','2016/11/30T00:00:00')",
-				"sourceIdentifier" : "stringMerge(,'MID', alpha(1))",
+				"sourceIdentifier" : "stringMerge(,MID, alpha(1))",
 				"status" : "randomWeighted('Accepted', 'Rejected', 95:5)",
 				"memberId" : "randomFromFile(memberIdsData_6879622688657050390.json)",
 				"dispensedDate" : "date(cur.processDate,'2016/11/30T00:00:00')",

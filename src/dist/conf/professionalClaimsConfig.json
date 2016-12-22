@@ -9,6 +9,6 @@
 		"file.prefix": "professionalClaimsData_",
     	"file.extension":".json",
     	"file.newLine" : "true",
-        "file.maxRecords":"20"
+        "file.maxRecords":"100000"
     }]
 }

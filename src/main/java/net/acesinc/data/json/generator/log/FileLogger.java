@@ -99,7 +99,7 @@ public class FileLogger implements EventLogger {
 	@Override
 	public void logEvent(String event) {
 
-		log.debug("## event to log" + event);
+		//log.debug("## event to log" + event);
 		
 		try {
 			if (!initialized) {

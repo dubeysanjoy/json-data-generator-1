@@ -1,6 +1,6 @@
 {
     "workflows": [{
-            "workflowName": "test",
+            "workflowName": "members",
             "workflowFilename": "membersWorkflow.json"
         }],
     "producers": [{
@@ -9,6 +9,6 @@
 		"file.prefix": "membersData_",
     	"file.extension":".json",
     	"file.newLine" : "true",
-        "file.maxRecords":"5"
+        "file.maxRecords":"20"
     }]
 }
