@@ -16,7 +16,7 @@
 						"srcfiller3" : "stringMerge(_, x12_4050_274R_GroupSiteProvider_20141116, this.srcfiller2)",
 						"sourceIdentifier" : "stringMerge(., cur.srcfiller3,'edi')",
 						"isLatest" : "false",
-						"status" : "random('Accepted', 'Pending')",
+						"status" : "randomWeighted('Accepted', 'Pending', 95:5)",
 						"providerId" : "cur.baseKey",
 						"providerIdType" : "TA",
 						"alternateId" : [],

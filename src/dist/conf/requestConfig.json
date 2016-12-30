@@ -9,6 +9,6 @@
 		"file.prefix": "requestData_",
     	"file.extension":".json",
     	"file.newLine" : "true",
-        "file.maxRecords":"1000"
+        "file.maxRecords":"10000"
     }]
 }

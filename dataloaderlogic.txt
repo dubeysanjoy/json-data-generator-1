@@ -1,0 +1,19 @@
+## upload with validation
+Table: instClaims
+
+DataLoader Logic:
+start transaction
+
+	use filename as sourceidentifier and overrider that data.
+	insert 5000 records
+
+	validate memberids   (control by a flag)
+		look up memberid in members table with state = 'Accepted'
+	validate providerids (control by flag)
+		look up providerid in providers table with state = 'Accepted'
+	for each record  (control was flag)
+		largest claimNumber + processDate set isLatest = true
+		look up ClaimNumber + processDate=True for all records in instClaims table
+		and set that to false
+
+add perf stats		

@@ -56,7 +56,7 @@ public class RandomJsonGenerator {
 
         gen.flush();
         
-        log.debug(w.toString());
+        //log.debug(w.toString());
         
         return w.toString();
     }
@@ -109,7 +109,7 @@ public class RandomJsonGenerator {
                         if (th != null) {
                             Object val = th.getNextRandomValue();
                             
-                            log.debug("current context:" + currentContext  + " propName: " +  propName + " val:" + val);
+                            //log.debug("current context:" + currentContext  + " propName: " +  propName + " val:" + val);
                             
                             generatedValues.put(currentContext + propName, val);
                             addValue(gen, propName, val);
@@ -119,7 +119,7 @@ public class RandomJsonGenerator {
                         }
                     } catch (IllegalArgumentException iae) {
                         log.warn("Error creating type [ " + type + " ]. Prop [ " + propName + " ] being ignored in output.  Reason: " + iae.getMessage());
-                        log.debug("Error creating type [ " + type + " ]. Prop [ " + propName + " ] being ignored in output.", iae);
+                        //log.debug("Error creating type [ " + type + " ]. Prop [ " + propName + " ] being ignored in output.", iae);
                     }
                 }
             } else if (Map.class.isAssignableFrom(value.getClass())) {

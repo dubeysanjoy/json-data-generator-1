@@ -3,7 +3,7 @@
     "varyEventFrequency": true,
     "repeatWorkflow": true,
     "varyRepeatFrequency": true,
-    "maxRecords" : 100000,
+    "maxRecords" : 10,
     "steps": [{
             "config": [{
             	"baseKey": "alphaNumeric(17, true)",

@@ -1,10 +1,10 @@
 {
-    "eventFrequency": 40,
+    "eventFrequency": 4,
     "varyEventFrequency": true,
     "repeatWorkflow": true,
     "timeBetweenRepeat": 10,
     "varyRepeatFrequency": true,
-    "maxRecords" : 20,
+    "maxRecords" : 10000,
     "steps": [{
             "config": [{
 		        "_id" : "stringMerge(,ObjectId(57d5c85d088b5e0f5, alpha(7),))",

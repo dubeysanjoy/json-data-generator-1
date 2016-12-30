@@ -202,6 +202,18 @@ public class SimulationRunnerTest {
 		
 		log.info("Total Time:" + (System.currentTimeMillis() - start));
 	}	
+
+	@Test public void testRunSimulation_episodeSid() {
+		JsonDataGenerator _dataGen = new JsonDataGenerator("episodeSidConfig.json");
+		
+		long start = System.currentTimeMillis();
+		
+		_dataGen.startRunning();
+		
+		System.out.println("sysout: total time:" + (System.currentTimeMillis() - start));
+		
+		log.info("Total Time:" + (System.currentTimeMillis() - start));
+	}	
 	
 	
 	

@@ -1,14 +1,14 @@
 {
     "workflows": [{
             "workflowName": "test",
-            "workflowFilename": "rxClaimsWF.json"
+            "workflowFilename": "episodeSidWorkflow.json"
         }],
     "producers": [{
     	"type":"file",
-    	"output.directory": "data",
-		"file.prefix": "rxClaimsData_",
+    	"output.directory": "src/dist/conf",
+		"file.prefix": "episodeSidData_",
     	"file.extension":".json",
     	"file.newLine" : "true",
-        "file.maxRecords":"10x"
+        "file.maxRecords":"5000"
     }]
 }

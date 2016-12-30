@@ -148,9 +148,9 @@ public class FileLogger implements EventLogger {
 	private boolean checkStatus() {
 		boolean flag = false;
 		
-		log.info("numTuples" + numTuples);
+		log.info("record Count -> " + numTuples);
 		
-		if (numTuples < maxRecords) {
+		if (numTuples <= maxRecords) {
 
 			flag = true;
 		}
