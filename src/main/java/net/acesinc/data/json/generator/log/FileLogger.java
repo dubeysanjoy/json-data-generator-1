@@ -150,7 +150,7 @@ public class FileLogger implements EventLogger {
 		
 		log.info("record Count -> " + numTuples);
 		
-		if (numTuples <= maxRecords) {
+		if (numTuples < maxRecords) {
 
 			flag = true;
 		}
