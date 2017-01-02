@@ -7,6 +7,22 @@ cd to new folder
 java -jar <jarname> <configfilename>
 
 #############################################################
+Pivotal updates:
+
+fileLogger - max records to be generated per file.
+
+work flow max: max records to be generated for each run.
+
+
+randomWeighted
+
+stringMerge upgraded
+
+randomFromFile
+
+
+
+##############################################################
 
 
 Version1 : Few updates as per our requirements

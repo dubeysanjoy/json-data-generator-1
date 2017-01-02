@@ -1,5 +1,7 @@
 package net.acesinc.data.json.generator;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 public class MiscTest {
@@ -15,6 +17,10 @@ public class MiscTest {
 		
 		System.out.println(arr[0].replaceAll("'","") + arr[1]);
 		
+	}
+	
+	@Test public void testTimestamp() {
+		System.out.println(new Date().getTime());
 	}
 
 }
