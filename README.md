@@ -1,33 +1,3 @@
-
-############### How To run From CLI #######################3
-
-build command: mvn -DskipTests clean package
-tar -xvf <binary.tar>
-cd to new folder
-java -jar <jarname> <configfilename>
-
-#############################################################
-Pivotal updates:
-
-fileLogger - max records to be generated per file.
-
-work flow max: max records to be generated for each run.
-
-
-randomWeighted
-
-stringMerge upgraded
-
-randomFromFile
-
-
-
-##############################################################
-
-
-Version1 : Few updates as per our requirements
-1) Be able to specify how many
-
 ## Json Data Generator
 
 <div style="text-align:center"><img src ="./src/design/logo.png" width="95%"/></div>
@@ -125,123 +95,6 @@ A File Producer sends json events to a file. One event will be written to each f
 
 The File Logger will attempt to create the directory specified by `output.directory`. 
 
-**HTTP POST**
-
-A HTTP POST Producer sends json events to a URL as the Request Body. Configure it like so:
-
-```
-{
-    "type": "http-post",
-    "url": "http://localhost:8050/ingest"
-}
-```
-
-If you need to send data to an HTTPS endpoint that required client certificates, you can provide the configuration of those certificates on the commandline using the `javax.net.ssl.*` properties. An example might be:
-
-```
-java -Djavax.net.ssl.trustStore=/path/to/trustsore.jks -Djavax.net.ssl.keyStore=/path/to/user/cert/mycert.p12 -Djavax.net.ssl.keyStoreType=PKCS12 -Djavax.net.ssl.keyStorePassword=password -jar json-data-generator-1.2.2-SNAPSHOT.jar mySimConfig.json
-```
-
-**Kafka**
-
-A Kafka Producer sends json events to the specified Kafka broker and topic as a String. Configure it like so:
-
-```
-{
-    "type": "kafka",
-    "broker.server": "192.168.59.103",
-    "broker.port": 9092,
-    "topic": "logevent",
-    "flatten": false,
-    "sync": false
-}
-```
-If `sync=false`, all events are sent asynchronously. If for some reason you would like to send events synchronously, set `sync=true`. If `flatten=true`, the Producer will flatten the json before sending it to the Kafka queue, meaning instead of having nested json objects, you will have all properties at the top level using dot notation like so:
-
-```
-{
-    "test": {
-    	"one": "one",
-    	"two": "two"
-   	},
-   	"array": [
-   		{
-   			"element1": "one"
-   		},{
-   			"element2": "two"
-   		}]
-}
-```
-
-Would become
-
-```
-{
-	"test.one": "one",
-	"test.two": "two",
-	"array[0].element1": "one",
-	"array[1].element2": "two"
-}
-```
-**NATS**
-
-A nats logger sends json events to gnatsd broker specifed in the config. The following example shows a sample config that sends json events to a locally running NATS broker listening on the default NATS port.
-
-```
-{
-    "type": "nats",
-    "broker.server": "127.0.0.1",
-    "broker.port": 4222,
-    "topic": "logevent",
-    "flatten": false
-}
-```
-Note that `flatten` has the same effect as the option in the kafka producer.
-
-**Tranquility**
-
-A Tranquility Producer sends json events using [Tranquility](https://github.com/metamx/tranquility) to a [Druid](http://druid.io) cluster. Druid is an Open Source Analytics data store and Tranquility is a realtime communication transport that druid supports for ingesting data.  Configure it like so:
-
-```
-{
-    "type": "tranquility",
-    "zookeeper.host": "localhost",
-    "zookeeper.port": 2181,
-    "overlord.name":"overlord",
-    "firehose.pattern":"druid:firehose:%s",
-    "discovery.path":"/druid/discovery",
-    "datasource.name":"test",
-    "timestamp.name":"startTime",
-    "sync": true,
-    "geo.dimensions": "where.latitude,where.longitude"  
-}
-```
-When sending data to Druid via Tranquility, we are sending a Task to the Druid Overlord node that will perform realtime ingestion. Our task implementation currently does not allow users to specifc the aggregators that are used. We create a single "events" metric that is a Count Aggregation. Everything else if configured though the properties. The `sync` and `flatten` properties behave exactly the same ast the Kafka Producer.  This works for us currently, but if you need more capability, please file an issue or submit a pull request!  
-
-When you start the Generator, it will contact the Druid Overlord and craete a task for your datasource and will then begin streaming data into Druid.  
-
-**MQTT**
-
-An MQTT Producer sends json events to the MQTT broker specified in the config. The following example shows a sample config that sends json events to a locally running MQTT broker listening on the default MQTT port.
-
-```
-{
-    "type": "mqtt",
-    "broker.server": "tcp://localhost",
-    "broker.port": 1883,
-    "topic": "/logevent",
-    "clientId": "LogEvent",
-    "qos": 2
-}
-```
-The MQTT producer support step specific configuration for QOS and Topic. The entire configuration and each item in it are optional. Add an "mqtt" item to the "producerConfig" map:
-```
-"mqtt" : {
-    "topic": "/elsewhere",
-    "qos": 1
-}
-```
-
 **Full Simulation Config Example**
 
 Here is a full example of a `Simulation Configuration` file:
@@ -251,18 +104,16 @@ exampleSimConfig.json:
 {
     "workflows": [{
             "workflowName": "test",
-            "workflowFilename": "exampleWorkflow.json"
+            "workflowFilename": "memberIdWorkflow.json"
         }],
     "producers": [{
-            "type": "kafka",
-            "broker.server": "192.168.59.103",
-            "broker.port": 9092,
-            "topic": "logevent",
-            "sync": false
-    },{
-        "type":"logger"
+    	"type":"file",
+    	"output.directory": "data",
+		"file.prefix": "memberIdsData_",
+    	"file.extension":".json",
+    	"file.newLine" : "true",
+        "file.maxRecords":"2000"
     }]
-}
 ```
 This simulation will run a single `Workflow` and send all the events to both the defined Kafka topic and to the Logger producer that put the events in to a log file.  
 
@@ -278,6 +129,7 @@ The `Workflow` is defined in seperate files to allow you to have and run multipl
 | varyRepeatFrequency | boolean | If true, a random amount (between 0 and half the eventFrequency) of time will be added/subtracted to the timeBewteenRepeat  |
 | stepRunMode | string | Possible values: sequential, random, random-pick-one. Default is sequential |  
 | steps | Array | A list of Workflow Steps to be run in this Workflow |
+| maxRecords | long | Total number of records to generate (New) |
 
 **Workflow Steps**
 
@@ -451,8 +303,8 @@ Will always generate:
 | `firstName()` | n/a | Generates a random first names from a predefined list of names |
 | `lastName()` | n/a | Generates a random last names from a predefined list of names |
 | `uuid()` | n/a | Generates a random UUID |
-| `stringMerge()` | Delimiter and then the string values to merge | Takes the input arguments and merges them together using the delimiter. This can be used with the `this.prop` or `cur.prop` keywords to merge generated values like: `stringMerge(_, this.firstName, this.lastName)` which would output something like `Bilbo_Baggins` |
-
+| `stringMerge()` | Delimiter and then the string values to merge | Takes the input arguments and merges them together using the delimiter. This can be used with the `this.prop` or `cur.prop` keywords to merge generated values like: `stringMerge(_, this.firstName, this.lastName)` which would output something like `Bilbo_Baggins`. Recent updates allows two
+			more nested functions isalpha(#) and integer(n-n)|
 
 
 ### Primitave Functions
@@ -481,7 +333,10 @@ Will always generate:
 | Function        | Arguments           | Description   |
 | --------------- |----------------| --------------|
 | `random(val1,val2,...)` | Literal values to choose from. Can be Strings, Integers, Longs, Doubles, or Booleans | Randomly chooses from the specified values |
+| `randomFromFile(<filename>)` | filename(json) |Can be used to get values from a file. File format has to be json. [{"key1":"value1"},\n {"key2":"value2"}]
+| `randomWeighted('val1', val2', m:n)` | val1, val2 and percentage split out of 100 | e.g random('True', 'False', 95:5) will generate out of 100 values, 95 'True and 5 'False;|
 | `counter(name)` | The name of the counter to generate | Generates a one up number for a specific name. Specify different names for differnt counters. |
+| `counter(name, n, n)` | The name of the counter to generate, start value, end value | Generates a one up number for a specific name. counter generates values between start and end |
 | `this.propName` | propName = the name of another property | Allows you to reference other values that have already been generated (i.e. they must come before).  For example, this.test.nested-test will reference the value of test.nested-test in the previously generated json object. You can also specify a `this.` clause when calling other functions like `date(this.otherDate)` will generate a date after another generated date. |
 | `cur.propName` | propName = the name of another property at the same level as this property | Allows you to reference other values at the same level as the current property being generated. This is useful when you want to reference properties within a generated array and you don't know the index of the arrary. |
 | `randomIncrementLong(name, baseValue, minStep, maxStep)` | The name of the value to generate, its base value and boundries for the step | Generates a random step number for a specific name. Specify different names for differnt counters. |
@@ -515,8 +370,19 @@ The `random()` function will tell the generator to pick a random element from th
         }]
 }
 ```
+{
+    "values": [
+        "integer(99)",
+        {
+        	"date": "date('2015/04/01T00:00:00', '2015/04/25T00:00:00')",
+        	"count": "integer(1, 10)"
+        },{
+        	"thing1": "random('red', 'blue')"
+        }]
+}
+```
 
-This will generate an array with one element that is either the element with `date` & `count` or the element with `thing1` in it. 
+This will generate an array with random number of elements in range 1-99 element. 
 
 ## Examples
 Here is a Kitchen Sink example to show you all the differnt ways you can generate data:
