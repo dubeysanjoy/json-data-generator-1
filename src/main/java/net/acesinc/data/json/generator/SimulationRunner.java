@@ -129,9 +129,10 @@ public class SimulationRunner {
 
 		shutDownEventLoggers();
 		
+	
 		running = false;
 		
-		log.info("All done.");
+		log.info("Execution took " + (System.currentTimeMillis() - startTime) + " ms");
 
 	}
 
