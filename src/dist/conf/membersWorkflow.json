@@ -4,7 +4,7 @@
     "repeatWorkflow": true,
     "timeBetweenRepeat": 10,
     "varyRepeatFrequency": true,
-    "maxRecords" : 20,
+    "maxRecords" : 2000,
     "steps": [{
             "config": [{
 		        "addressLine1": "6775 MAPLE GROVE",
@@ -42,7 +42,7 @@
 		                "organizationName": "EMPLR 5394852814",
 		                "payerCoordinatingId": "88",
 		                "pharmacy": "Y",
-		                "planId": "stringMerge(,'P92925608', integer11-99))",
+		                "planId": "stringMerge(,'P92925608', integer(11-99))",
 		                "providers": [],
 		                "relationship": "1",
 		                "subscriberId": "this.baseKey",

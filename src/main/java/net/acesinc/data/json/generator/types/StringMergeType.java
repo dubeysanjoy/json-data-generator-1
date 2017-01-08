@@ -59,7 +59,7 @@ public class StringMergeType extends TypeHandler {
 
 	private String resolveAlphaType(String s) {
 		try {
-			log.info("embedded type is" + s);
+			log.debug("embedded type is" + s);
 			String op = s.substring(0, s.indexOf("("));
 			String len = s.substring(s.indexOf("(") + 1, s.lastIndexOf(")"));
 			if("alpha".equalsIgnoreCase(op)) {
@@ -74,7 +74,7 @@ public class StringMergeType extends TypeHandler {
 
 	private String resolveIntegerType(String s) {
 		try {
-			log.info("embedded type is" + s);
+			log.debug("embedded type is" + s);
 			String op = s.substring(0, s.indexOf("("));
 			String op_params = s.substring(s.indexOf("(") + 1, s.lastIndexOf(")"));
 			String[] values = op_params.split("-");

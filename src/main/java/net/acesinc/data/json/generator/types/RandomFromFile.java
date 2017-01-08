@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.json.Json;
@@ -31,14 +33,15 @@ public class RandomFromFile extends TypeHandler {
 	public static final String TYPE_NAME = "randomFromFile";
 	
 	private String fileName;
-	private List<String> valuesArr;
+	private final List<String> valuesArr;
+	private LinkedList<String> _queue;
 
 	private static final Logger log = LogManager.getLogger(RandomFromFile.class);
 	/**
 	 * 
 	 */
 	public RandomFromFile() {
-		// TODO Auto-generated constructor stub
+		valuesArr = new ArrayList<String>();
 	}
 
     @Override
@@ -46,8 +49,10 @@ public class RandomFromFile extends TypeHandler {
         super.setLaunchArguments(launchArguments);
        
         fileName = launchArguments[0];
-        
-        readFile(fileName);
+        // no need to relaod every time.
+        if(valuesArr.size() == 0) {
+        	readFile(fileName);
+        }
         
         //readJsonFile(fileName);
         // readFile and populate Values
@@ -62,7 +67,16 @@ public class RandomFromFile extends TypeHandler {
 		if(valuesArr ==null || valuesArr.size() <=0) {
 			return "null";
 		}
-		String retVal = valuesArr.get(getRand().nextInt(0, valuesArr.size()-2));
+		//String retVal = valuesArr.get(getRand().nextInt(0, valuesArr.size()-2));
+		if(_queue.size() ==0) {
+			// Queue depleted... repopulate
+			Collections.shuffle(valuesArr);
+			_queue.addAll(valuesArr);
+				
+		}
+		String retVal = _queue.pop();
+		
+		//log.info(retVal);
 		
 		String[] _data = retVal.substring(retVal.indexOf("{"), retVal.indexOf("}")).split(":");
 		 
@@ -79,9 +93,9 @@ public class RandomFromFile extends TypeHandler {
 
 
 	private void readFile(String fileName) {
-		
+		log.debug("reading File", fileName);
 		try {
-			valuesArr = new ArrayList<String>();
+			
 			
 			InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName);
 			// if file is not in classpath then inputstream will be null
@@ -96,7 +110,9 @@ public class RandomFromFile extends TypeHandler {
 			
 			String line = null;
 			while((line = br.readLine()) != null) {
-				valuesArr.add(line);
+				if(line.length() > 5) {
+					valuesArr.add(line);
+				}
 			}
 			
 			//log.info(valuesArr.size());
@@ -105,12 +121,15 @@ public class RandomFromFile extends TypeHandler {
 		} catch (IOException ex) {
 			log.error("Unable to read file", fileName);
 		}
+		
+		Collections.shuffle(valuesArr);
+		
+		_queue = new LinkedList<String>(valuesArr);
 	}
 	
 	private void readJsonFile(String fileName) {
 		
 		try {
-			valuesArr = new ArrayList<String>();
 			
 			//InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName);
 			File f = new File(fileName);
